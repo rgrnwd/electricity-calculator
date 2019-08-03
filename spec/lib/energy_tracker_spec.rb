@@ -1,16 +1,15 @@
 require 'energy_tracker.rb'
 
 describe 'energy_tracker' do
+  let(:tracker) { EnergyTracker.new }
+
   describe '#initialise' do
     it 'sets the array to empty' do
-      tracker = EnergyTracker.new
       expect(tracker.energy_readings).to eq([])
     end
   end
 
   describe '#parse' do
-    let(:tracker) { EnergyTracker.new }
-
     it 'ignores headers' do
       content = "time,power_real"
       tracker.parse(content)
