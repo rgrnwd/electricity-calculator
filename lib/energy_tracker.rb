@@ -1,6 +1,6 @@
 require 'csv'
-require 'helpers/interval_calculator'
-require 'models/power_reading'
+require './lib/helpers/interval_calculator.rb'
+require './lib/models/power_reading.rb'
 
 class EnergyTracker
   attr_accessor :energy_readings
@@ -21,6 +21,6 @@ class EnergyTracker
       power_reading = PowerReading.new(reading['power_real'].to_i, interval)
       sum += power_reading.kilowatt_hours
     }
-    sum
+    (sum * 1000).to_i
   end
 end

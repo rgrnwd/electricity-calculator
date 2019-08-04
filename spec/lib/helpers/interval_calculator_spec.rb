@@ -1,4 +1,4 @@
-require 'helpers/interval_calculator.rb'
+require './lib/helpers/interval_calculator.rb'
 
 RSpec.describe IntervalCalculator do
   describe '#calculate' do

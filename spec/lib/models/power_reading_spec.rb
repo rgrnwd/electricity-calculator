@@ -1,4 +1,4 @@
-require 'models/power_reading.rb'
+require './lib/models/power_reading.rb'
 
 describe 'power_reading' do
   describe '#kilowatt_hours' do
