@@ -23,4 +23,12 @@ class EnergyTracker
     }
     (sum * 1000).to_i
   end
+
+  def total_energy_consumed
+    sum = 0.0
+    energy_readings.each { |reading|
+      sum += reading['usage'].to_f
+    }
+    sum.to_i
+  end
 end
