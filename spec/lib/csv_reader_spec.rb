@@ -16,6 +16,14 @@ RSpec.describe CSVReader do
       content = "time,power_real\n00:00:00,0\n00:00:05,0"
       expect(described_class.parse(content).length).to eq(2)
     end
+
+    it 'raises an exception when csv content cannot be read' do
+      csv = class_double(CSV).as_stubbed_const
+      allow(csv).to receive(:parse).and_raise('malformed csv!')
+      expect {
+        described_class.parse('')
+      }.to raise_error(CSVParsingError)
+    end
   end
 
   describe '#read' do

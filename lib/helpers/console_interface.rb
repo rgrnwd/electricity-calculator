@@ -15,7 +15,7 @@ class ConsoleInterface
       energy_readings = CSVReader.parse(CSVReader.read(consumption_file))
       @output.puts "#{EnergyConsumptionCalculator.total_energy_consumed(energy_readings)}Wh of electricity was consumed"
 
-    rescue FileNotFoundError => e
+    rescue => e
       @output.puts e.message
     end
   end
@@ -28,7 +28,7 @@ class ConsoleInterface
       energy_readings = CSVReader.parse(CSVReader.read(generation_file))
       @output.puts "#{EnergyGenerationCalculator.total_energy_generated(energy_readings)}Wh of electricity was generated"
     
-    rescue FileNotFoundError => e
+    rescue => e
       @output.puts e.message
     end
   end

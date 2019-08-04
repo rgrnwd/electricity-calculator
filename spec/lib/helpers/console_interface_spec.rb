@@ -4,6 +4,7 @@ describe 'console interface' do
 
   let(:output) { StringIO.new }
   let(:file_class) { class_double(File).as_stubbed_const }
+  let(:csv_class) { class_double(CSV).as_stubbed_const }
   let(:dummy_content) { '' }
 
   describe '#energy_generation' do
@@ -24,6 +25,12 @@ describe 'console interface' do
       allow(file_class).to receive(:read).with('./data/01-solar_generation.csv').and_raise('No such file')
       console_interface.energy_generation
       expect(output.string).to include("I can't seem to find that file.")
+    end
+
+    it 'prints a nice error if for some reason the file cannot be parsed' do
+      allow(csv_class).to receive(:parse).and_raise('Malformed csv!')
+      console_interface.energy_generation
+      expect(output.string).to include("I am having some trouble reading this file.")
     end
 
     it 'prints the total returned from the energy generation calculator' do
@@ -50,8 +57,14 @@ describe 'console interface' do
 
     it 'prints a nice error if for some reason the file cannot be read' do
       allow(file_class).to receive(:read).with('./data/02-consumption.csv').and_raise('No such file')
-      console_interface.energy_generation
+      console_interface.energy_consumption
       expect(output.string).to include("I can't seem to find that file.")
+    end
+
+    it 'prints a nice error if for some reason the file cannot be parsed' do
+      allow(csv_class).to receive(:parse).and_raise('Malformed csv!')
+      console_interface.energy_consumption
+      expect(output.string).to include("I am having some trouble reading this file.")
     end
 
     it 'prints the total returned from the energy consumption calculator' do
