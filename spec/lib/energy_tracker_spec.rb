@@ -28,40 +28,4 @@ describe 'energy_tracker' do
       expect(tracker.energy_readings.length).to eq(2)
     end
   end
-
-  describe '#total_energy_generated' do
-    it 'returns 0 when no energy readings are available' do
-      expect(tracker.total_energy_generated).to eq(0)
-    end
-
-    it 'returns 0 when the sum of all energy readings is 0' do
-      content = "time,power_real\n00:00:00,0\n00:00:05,0"
-      tracker.parse(content)
-      expect(tracker.total_energy_generated).to eq(0)
-    end
-
-    it 'returns sum in watt hours for multiple energy readings' do
-      content = "time,power_real\n07:40:00,2765\n07:45:00,3206\n07:50:00,3679"
-      tracker.parse(content)
-      expect(tracker.total_energy_generated).to eq(804)
-    end
-  end
-
-  describe '#total_energy_consumed' do
-    it 'returns 0 when no energy readings are available' do
-      expect(tracker.total_energy_consumed).to eq(0)
-    end
-
-    it 'returns 0 when the sum of all energy readings is 0' do
-      content = "time,power_real\n00:00:00,0\n00:30:00,0"
-      tracker.parse(content)
-      expect(tracker.total_energy_consumed).to eq(0)
-    end
-
-    it 'sums the energy consumed in the periods provided' do
-      content = "period,usage\n4:30:00,16.847\n5:00:00,16.234\n5:30:00,15.407\n6:00:00,21.679"
-      tracker.parse(content)
-      expect(tracker.total_energy_consumed).to eq(70)
-    end
-  end
 end
