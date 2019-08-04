@@ -17,4 +17,23 @@ RSpec.describe CSVReader do
       expect(described_class.parse(content).length).to eq(2)
     end
   end
+
+  describe '#read' do
+    let(:file_class) { class_double(File).as_stubbed_const }
+    let(:content) { 'some content' }
+    let(:file_path) { './some-path.csv' }
+
+    it 'calls File.read and returns its contents' do
+      allow(file_class).to receive(:read).with(file_path).and_return(content)
+      expect(described_class.read(file_path)).to eq(content)
+    end
+
+    it 'raises a FileNotFound error when the file does not exist' do
+      allow(file_class).to receive(:read).and_raise("No such file")
+
+      expect {
+        described_class.read(file_path)
+      }.to raise_error(FileNotFoundError)
+    end
+  end
 end
