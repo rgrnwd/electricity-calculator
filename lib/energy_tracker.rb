@@ -1,5 +1,5 @@
 require 'csv'
-require './lib/helpers/interval_calculator.rb'
+require './lib/calculators/interval_calculator.rb'
 require './lib/models/power_reading.rb'
 
 class EnergyTracker
