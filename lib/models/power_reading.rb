@@ -4,7 +4,7 @@ class PowerReading
     @power = power
   end
   
-  def watts_per_hour
-    return @power * @period_duration
+  def kilowatt_hours
+    return (@power * @period_duration) / 1000.0
   end
 end
