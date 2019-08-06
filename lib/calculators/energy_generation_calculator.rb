@@ -8,9 +8,9 @@ class EnergyGenerationCalculator
     sum = 0.0
     energy_readings.each { |reading|
       power_reading = PowerReading.new(reading['power_real'].to_i, interval)
-      sum += power_reading.kilowatt_hours
+      sum += power_reading.watt_hours
     }
-    (sum * 1000).to_i
+    (sum).to_i
   end
 
 end

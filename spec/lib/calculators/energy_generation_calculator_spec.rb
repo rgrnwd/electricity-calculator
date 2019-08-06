@@ -19,7 +19,7 @@ RSpec.describe EnergyGenerationCalculator do
         {"time" => "07:40:00", "power_real" => "2765"},
         {"time" => "07:45:00", "power_real" => "3206"},
         {"time" => "07:50:00", "power_real" => "3679"}]
-      expect(described_class.total_energy_generated(energy_readings)).to eq(804)
+      expect(described_class.total_energy_generated(energy_readings)).to eq(804166)
     end
   end
 end

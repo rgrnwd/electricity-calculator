@@ -1,10 +1,10 @@
 class PowerReading
-  def initialize(power, period_duration)
+  def initialize(power_kilowatts, period_duration)
     @period_duration = period_duration
-    @power = power
+    @power_kilowatts = power_kilowatts
   end
   
-  def kilowatt_hours
-    return (@power * @period_duration) / 1000.0
+  def watt_hours
+    return (@power_kilowatts * 1000.0 * @period_duration)
   end
 end
